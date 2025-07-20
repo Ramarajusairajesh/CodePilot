@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: orchestrator-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: orchestrator
+          image: yourrepo/orchestrator:latest
+          ports:
+            - containerPort: 9000
+          command:
+            ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "9000"]
+      restartPolicy: Never
+
